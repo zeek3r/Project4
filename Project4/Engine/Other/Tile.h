@@ -10,18 +10,16 @@ class Tile {
 private:
 	GLuint vao, vbo;
 public:
-	Tile(glm::vec2 position, glm::vec2 size, glm::vec2 uv, glm::vec2 uvSize) {
+	Tile(glm::vec2 position, glm::vec2 size) {
 		this->position = position;
-		this->uv = uv;
-		this->uvSize = uvSize;
 		this->size = size;
 		GLfloat verts[24] = {
-			position.x, position.y, uv.x, uv.y,
-			position.x, position.y + size.y, uv.x, uv.y + uvSize.y,
-			position.x + size.x, position.y + size.y, uv.x + uvSize.x, uv.y + uvSize.y,
-			position.x + size.x, position.y + size.y, uv.x + uvSize.x, uv.y + uvSize.y,
-			position.x + size.x, position.y, uv.x + uvSize.x, uv.y,
-			position.x, position.y, uv.x, uv.y
+			position.x, position.y, 0, 0,
+			position.x, position.y + size.y, 0, 1,
+			position.x + size.x, position.y + size.y, 1, 1,
+			position.x + size.x, position.y + size.y, 1, 1,
+			position.x + size.x, position.y, 1, 0,
+			position.x, position.y, 0, 0
 		};
 		glGenVertexArrays(1, &vao);
 		glBindVertexArray(vao);
@@ -34,7 +32,6 @@ public:
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 4, (void*)8);
 		glEnableVertexAttribArray(1);
 	}
-	glm::vec2 uv, uvSize;
 	glm::vec2 position;
 	glm::vec2 size;
 	std::string texturePath;
@@ -46,12 +43,12 @@ public:
 	}
 	void update_position() {
 		GLfloat verts[24] = {
-			position.x, position.y, uv.x, uv.y,
-			position.x, position.y + size.y, uv.x, uv.y + uvSize.y,
-			position.x + size.x, position.y + size.y, uv.x + uvSize.x, uv.y + uvSize.y,
-			position.x + size.x, position.y + size.y, uv.x + uvSize.x, uv.y + uvSize.y,
-			position.x + size.x, position.y, uv.x + uvSize.x, uv.y,
-			position.x, position.y, uv.x, uv.y
+			position.x, position.y, 0, 0,
+			position.x, position.y + size.y, 0, 1,
+			position.x + size.x, position.y + size.y, 1, 1,
+			position.x + size.x, position.y + size.y, 1, 1,
+			position.x + size.x, position.y, 1, 0,
+			position.x, position.y, 0, 0
 		};
 		glBindVertexArray(vao);
 		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(GLfloat) * 24, verts);

@@ -62,9 +62,6 @@
     <ClInclude Include="Engine\Other\Error.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Other\Grid.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Other\Level.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -49,4 +49,7 @@ public:
 	bool getMouseDown(int button) {
 		return buttons[button] && !pbuttons[button];
 	}
+	bool getMouse(int button) {
+		return buttons[button];
+	}
 };

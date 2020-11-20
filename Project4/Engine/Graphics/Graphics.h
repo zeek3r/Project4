@@ -22,9 +22,9 @@ public:
 		glewInit();
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		//SDL_ShowCursor(SDL_DISABLE);
+		SDL_ShowCursor(SDL_DISABLE);
 		glClearColor(0, 0.5f, 1.0f, 1.0f);
-		
+
 		// This part of the code initiliazes imgui
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
@@ -35,10 +35,6 @@ public:
 		// imgui init end
 	}
 	void draw_gui() {
-		{
-			ImGui::Begin("Test");
-			ImGui::End();
-		}
 		{
 			ImGui::BeginMainMenuBar();
 			if (ImGui::BeginMenu("File"))
@@ -58,21 +54,8 @@ public:
 			}
 			ImGui::EndMainMenuBar();
 		}
-		{
-			ImGui::Begin("");
-			ImGui::BeginMenuBar();
-			if (ImGui::BeginMenu("File"))
-			{
-				if (ImGui::MenuItem("New", "Create new level")) {/*Create new level*/ }
-				if (ImGui::MenuItem("Open")) { /* Level file loading implementation */ }
-				if (ImGui::MenuItem("Save")) { /* Level file saving implementation */ }
-				if (ImGui::MenuItem("Save as..")) {/*Level save as implementation*/ }
-				if (ImGui::MenuItem("Close", "Close level")) {/* Close level file */ }
-				ImGui::EndMenu();
-			}
-			ImGui::End();
-			// imgui code
-		}
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 	}
 	void clear_display() {
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -82,8 +65,6 @@ public:
 		ImGui::NewFrame();
 	}
 	void present_display() {
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 		SDL_GL_SwapWindow(window);
 	}
 };
