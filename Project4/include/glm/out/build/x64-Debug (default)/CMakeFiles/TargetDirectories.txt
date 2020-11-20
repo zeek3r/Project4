@@ -1,0 +1,2 @@
+C:/Users/isacv/source/repos/Project44/Project4/include/glm/out/build/x64-Debug (default)/CMakeFiles/edit_cache.dir
+C:/Users/isacv/source/repos/Project44/Project4/include/glm/out/build/x64-Debug (default)/CMakeFiles/rebuild_cache.dir

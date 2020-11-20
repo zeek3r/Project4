@@ -35,12 +35,6 @@ public:
 		// imgui init end
 	}
 	void draw_gui() {
-
-
-		ImGui_ImplOpenGL3_NewFrame();
-
-		ImGui_ImplSDL2_NewFrame(window);
-		ImGui::NewFrame();
 		{
 			ImGui::Begin("Test");
 			ImGui::End();
@@ -79,13 +73,17 @@ public:
 			ImGui::End();
 			// imgui code
 		}
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 	}
 	void clear_display() {
 		glClear(GL_COLOR_BUFFER_BIT);
+		ImGui_ImplOpenGL3_NewFrame();
+
+		ImGui_ImplSDL2_NewFrame(window);
+		ImGui::NewFrame();
 	}
 	void present_display() {
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 		SDL_GL_SwapWindow(window);
 	}
 };
